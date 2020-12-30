@@ -1,0 +1,86 @@
+.target{
+  width: 100%;
+  height: 20px;
+  background-color: skyblue;
+  white-space: nowrap;
+  transition-property: all;
+  transition-duration:1s;
+  transition-timing-function: ease;
+}
+
+.target2{
+  background-color: skyblue;
+  line-height: 1;
+  transition-property: all;
+  transition-duration:1s;
+  transition-timing-function: linear
+}
+
+#checked_test:checked ~ .temp
+{
+  background-color: blueviolet;
+  height: 0px;
+}
+
+#checked_test:checked ~ .target2{
+  background-color: blueviolet;
+  line-height: 0;
+}
+
+/*サイドバー*/
+.main_sidebar *
+{
+  width:300px;
+  padding-top: 15px;    /*インライン要素の幅を制御できないので妥協*/
+  padding-bottom: 15px;
+}
+
+/*サイドバー　項目*/
+.sidebar_item_layout{
+  display: block;
+  margin: 0;
+  line-height: 1;       /*行の高さ*/
+  cursor :pointer;
+  text-align:center;
+}
+
+.sidebar_item{
+  color :#ffffff;
+  background : #400000;
+  border-bottom:3px solid #000000;
+}
+
+.sidebar_checkbox{
+  display: none;
+}
+
+
+#chkbox_1:checked ~ .sidebar_item_child_layout,
+#chkbox_1:checked ~ .sidebar_item_child
+{
+  height: 18px;
+  padding-top: 15px;    /*インライン要素の幅を制御できないので妥協*/
+  padding-bottom: 15px;
+  outline: 1px solid black ;
+}
+
+/*サイドバー 子項目 最初は非表示*/
+.sidebar_item_child_layout{
+  display: block;
+  padding:0px;
+  height: 0px;
+  overflow: hidden; /*項目が縮んだ時に文字を消す*/
+  outline: 0px solid black ;
+  outline-offset: -1px;
+
+  transition-property: all;
+  transition-duration:0.2s;
+  transition-timing-function: ease-in;
+}
+
+.sidebar_item_child{
+  color :#222;
+  background : #D0A050;
+  cursor :pointer;
+  text-align:center;
+}

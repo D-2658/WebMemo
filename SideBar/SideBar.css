@@ -18,7 +18,7 @@
 
 #checked_test:checked ~ .temp
 {
-  background-color: blueviolet;
+  background-color: rgb(61, 27, 94);
   height: 0px;
 }
 

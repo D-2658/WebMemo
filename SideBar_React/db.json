@@ -1,9 +1,19 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
-  }
+   "todos": [ 
+     {
+        "title": "Angular の 学習", 
+        "id": "c 7051 c 2 c-9 f 9 e-452 b-999 f-1 ce 412415545", 
+        "completed": false 
+      }, 
+      { 
+        "title": "Vue. js の 学習", 
+        "id": "82 ebaa 6 d-95 b 9-4771-ac 51-6570 ab 7 bd 1 ac", 
+        "completed": false 
+      }, 
+      { 
+        "title": "React の 学習", 
+        "id": "3099525 c-e 0 e 7-4 e 68-8 f 0 b-580 bde 787 b 7 a", 
+        "completed": true 
+      } 
+    ]
+}

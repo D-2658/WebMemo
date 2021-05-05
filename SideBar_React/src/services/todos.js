@@ -7,4 +7,19 @@ const getAll = async()=>{
     return response.data;
 }
 
-export default {getAll};
+const update = async(id, newTodo)=>{
+    const response = await axios.put(baseUrl + '/' + id , newTodo)
+    return response.data;
+}
+
+const _delete = async id =>{
+    await axios.delete(`${baseUrl}/${id}`); // テンプレートリテラルはバッククオート
+    return id;
+}
+
+const add = async newTodo =>{
+    const response = await axios.post(baseUrl, newTodo);
+    return response.data;
+}
+
+export default {getAll, update, delete: _delete, add};

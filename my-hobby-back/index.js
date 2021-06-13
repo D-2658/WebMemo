@@ -18,7 +18,6 @@ client.post('statuses/update', params, function(error, tweets, response){
 const express = require("express");
 const app = express();
 
-/*
 // CORS
 app.use(function(req, res, next){
     res.header("Access-Control-Allow-Origin", "*");
@@ -31,7 +30,6 @@ app.use(function(req, res, next){
 
 // jsonを利用可能に
 app.use(express.json());
-*/
 
 //テストゾーン/////////////////////////////////////
 // use アプリケーションがリクエストを受けるたびに実行
@@ -44,13 +42,13 @@ app.use(function (req, res, next) {
 // DBの代わり
 const user = {id: 1, name:"Taro"};
 
-// Getリクエスト /api/user
-app.get("/api/user", (req, res) => {
+// Getリクエスト
+app.get("/get", (req, res) => {
     console.log('app.get');
 });
 
 // Postリクエスト テスト用コマンド "curl -X POST [url]"
-app.post("/api", function(req, res){
+app.post("/post", function(req, res){
     console.log('app.post');
     res.send("POST is send.");
 });

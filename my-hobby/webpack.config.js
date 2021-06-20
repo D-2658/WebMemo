@@ -1,3 +1,4 @@
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
 
@@ -10,7 +11,10 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env"] }
+        options: { 
+          presets: ["@babel/env"], 
+          plugins: [require.resolve("react-refresh/babel")],
+        }
       },
       {
         test: /\.css$/,
@@ -30,5 +34,8 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new ReactRefreshWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ]
 };

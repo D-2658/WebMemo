@@ -1,11 +1,14 @@
-import ImageViewr from "./ImageViewr"
-var express = require("express");
-function App() {
-  return (
-    <div className="App">
-      temp
-    </div>
-  );
+
+import React, { Component} from "react";
+
+class App extends Component{
+  render(){
+    return(
+      <div className="App">
+        <h1> Hello, World! </h1>
+      </div>
+    );
+  }
 }
 
 export default App;

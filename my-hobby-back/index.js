@@ -1,5 +1,4 @@
-/*
-var Twitter = require('twitter');
+/* var Twitter = require('twitter');
 var client = new Twitter({
   consumer_key: process.env.REACT_APP_API_KEY,
   consumer_secret: process.env.REACT_APP_API_SECRET_KEY,
@@ -8,12 +7,14 @@ var client = new Twitter({
 });
 
 var params = {status: '日本語ツイート検証'};
-client.post('statuses/update', params, function(error, tweets, response){
+client.get('search/tweets', params, function(error, tweets, response){
 	if(error){
 		console.log(error);
 	}
-});
-*/
+    else{
+        console.log(tweets)
+    }
+}); */
 
 const express = require("express");
 const app = express();

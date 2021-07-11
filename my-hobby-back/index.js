@@ -1,20 +1,12 @@
-/* var Twitter = require('twitter');
-var client = new Twitter({
+const MyTwitter = require("./src/twitter.js")
+require('dotenv').config()
+const Twitter = require('twitter');
+const client = new Twitter({
   consumer_key: process.env.REACT_APP_API_KEY,
   consumer_secret: process.env.REACT_APP_API_SECRET_KEY,
   access_token_key: process.env.REACT_APP_API_ACCESS_TOKEN,
-  access_token_secret: process.env.REACT_APP_API_ACCESS_TOKEN_SECRET
+  access_token_secret: process.env.REACT_APP_API_ACCESS_TOKEN_SECRET,
 });
-
-var params = {status: '日本語ツイート検証'};
-client.get('search/tweets', params, function(error, tweets, response){
-	if(error){
-		console.log(error);
-	}
-    else{
-        console.log(tweets)
-    }
-}); */
 
 const express = require("express");
 const app = express();
@@ -46,6 +38,25 @@ const user = {id: 1, name:"Taro"};
 // Getリクエスト
 app.get("/get", (req, res) => {
     console.log('app.get');
+
+    let mytwitter = new MyTwitter(
+        process.env.REACT_APP_API_KEY,
+        process.env.REACT_APP_API_SECRET_KEY,
+        process.env.REACT_APP_API_ACCESS_TOKEN,
+        process.env.REACT_APP_API_ACCESS_TOKEN_SECRET,
+        process.env.REACT_APP_BEARER_TOKEN);
+    
+    mytwitter.search();
+    // var params = {status: '日本語ツイート検証'};
+    // client.get('search/tweets.json?q="%E3%82%B7%E3%83%A3%E3%83%8B%E3%83', params, function(error, tweets, response){
+    //     if(error){
+    //         console.log(error);
+    //     }
+    //     else{
+    //         console.log(tweets);
+    //         res = tweets;
+    //     }
+    // });
 });
 
 // Postリクエスト テスト用コマンド "curl -X POST [url]"

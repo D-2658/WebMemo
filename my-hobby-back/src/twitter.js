@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const querystring = require('querystring');
 
 module.exports = class Twitter
 {
@@ -17,19 +18,24 @@ module.exports = class Twitter
     }
 
     // ツイートの検索　最近
-    async search() {
+    async search(keyword) {
          await new Promise(() => {
-            fetch('https://api.twitter.com/2/tweets/search/recent?query="%E3%82%B7%E3%83%A3%E3%83%8B%E3%83%9E%E3%82%B9"',{
-                method: "GET", 
-                headers:{   
-                    authorization: "Bearer " + this.#bearerToken,
-                }
-            })
+            const querys = {query : keyword, expansions : "attachments.media_keys", "media.fields" : "url"};
+            const qs = new URLSearchParams(querys);
+            const url = "https://api.twitter.com/2/tweets/search/recent";
+            const params = {method : "GET", headers : {authorization: "Bearer " + this.#bearerToken}};
+
+            console.log("keyword" + keyword);
+            console.log("querys" + qs);
+            console.log("url" + `${url}?` + qs);
+
+            fetch(`${url}?` + qs, params)
             .then(response => response.json())
             .then(json => {
                 console.log(json);
+                console.log(json.includes.media[0]);
                 return json;
-            })
+            });
         });
     }
 }

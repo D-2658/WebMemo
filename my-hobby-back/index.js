@@ -36,7 +36,15 @@ const user = {id: 1, name:"Taro"};
 // Getリクエスト
 app.get("/get", (req, res) => {
     console.log('app.get');
-    res.json(client.search());
+    // 検索ワードは「シャニマス」
+    res.json(client.search("\u30b7\u30e3\u30cb\u30de\u30b9"));
+});
+
+// 検索 (例:ttp://localhost:5001/search?keyword=シャニマス)
+app.get("/search", (req, res) => {
+    console.log('app.get');
+    var result = client.search(req.query.keyword)
+    res.send(result);
 });
 
 // Postリクエスト テスト用コマンド "curl -X POST [url]"

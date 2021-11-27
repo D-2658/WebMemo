@@ -3,7 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ['@babel/polyfill', './src/index.js'],
   mode: "development",
   module: {
     rules: [
@@ -19,7 +19,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
-      }
+      },
+      { 
+        test: /\.(gif|png|jpe?g|)$/, 
+        use: 'url-loader' 
+      }, 
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },

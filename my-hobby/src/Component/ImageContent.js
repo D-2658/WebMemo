@@ -1,15 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { Theme, createStyles, makeStyles} from '@material-ui/core/styles';
 import { Favorite, FavoriteBorder} from '@material-ui/icons';
-import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import like_on from "../../Image/like_on.png"
-import like_off from "../../Image/like_off.png"
-import {ImageListItemBar, IconButton} from '@material-ui/core';
-import * as Twitter from "../TwitterAPI.js"
-import blue from "../../Image/blue.png"
+import {ImageListItemBar, IconButton, Dialog} from '@material-ui/core';
+import TweetContentDialog from './TweetContentDialog';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -28,9 +21,10 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-function ImageContent({imageSrc, isLike}){
+function ImageContent({message, imageSrc, isLike}){
     const classes = useStyles();
     const [isLiked, setIsLiked] = useState(isLike)
+    const [open, setOpen] = React.useState(false);
     const icon = ()=>{
         var item;
         if(isLiked == true){
@@ -54,17 +48,28 @@ function ImageContent({imageSrc, isLike}){
         return 0;
     }
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return(
         <div className={classes.Image}>
-            <img src={blue} width="200"/>
+            <img src={imageSrc} width="500px" loading="lazy" alt="画像" onClick={handleClickOpen}/>
             <ImageListItemBar
-              title={"temptemptemp"}
+              title={message}
               actionIcon={
                 <IconButton color="secondary" onClick={()=>Like()}>
                     {icon()}
                 </IconButton>
               }
             />
+            <Dialog open={open} onClose={handleClose} maxWidth="auto">
+              <TweetContentDialog imageSrc={imageSrc}/>
+            </Dialog>
         </div>
     );
 }

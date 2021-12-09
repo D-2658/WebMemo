@@ -1,6 +1,6 @@
 export class TweetContent{
     MediaKey
-    ImagSrc
+    ImageSrc
     Id
     Message
     IsLike

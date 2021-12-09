@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { TweetContent } from './Class/TweetContent';
 import ImageContent from './Component/ImageContent';
-import { ImageListItem, List} from '@material-ui/core';
+import { ImageListItem } from '@mui/material';
 
 export default function TweetImageList(){
   const [imageContentList, setimageContentList] = useState(null);
@@ -24,8 +24,8 @@ export default function TweetImageList(){
   return(
     // imageContentListが存在する場合のみ描画
     imageContentList != null && imageContentList.map(item=>
-      <ImageListItem cols={1} style={{width: "auto", height: 'auto'}}>
-        <ImageContent/>
+      <ImageListItem>
+        <ImageContent message = {item.Message} imageSrc={item.ImageSrc}/>
       </ImageListItem>
     )
   );
@@ -48,7 +48,7 @@ function CreateList(json){
   json.includes.media.map((mediItem)=>{
       var item = new TweetContent();
       item.MediaKey = mediItem.media_key;
-      item.ImagSrc = mediItem.url;
+      item.ImageSrc = mediItem.url;
       list.push(item);
   });
 
@@ -61,7 +61,7 @@ function CreateList(json){
           findRes.Id = basicItem.id;
           findRes.Message = basicItem.text;
       }
-      });
+    });
   });
 
   return list;

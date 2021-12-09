@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import SearchAppBar from './Component/SearchBar';
-import {ImageList, ImageListItem, List} from '@material-ui/core';
+import { ImageList } from '@mui/material';
+import { ImageListItem } from '@mui/material';
+import { Box } from '@mui/material';
 import { TweetContent } from './Class/TweetContent';
 import TweetImageList from './TweetImageList'
+import TweetContentDialog from './Component/TweetContentDialog';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -15,25 +18,23 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: theme.palette.background.paper,
       height: "100%"
     },
-    gridList: {
+    dialog: {
       width: "100%",
-      height: "auto",
+      height: "100%",
     },
   }),
 );
 
 function App(){
-  const [temp, settemp] = useState("Hello ,World");
   const classes = useStyles();
 
   return(
     <div className={classes.root}>
-      <ImageList className={classes.gridList}>
-        <ImageListItem cols={2} style={{ height: 'auto' }}>
-          <SearchAppBar/>
-        </ImageListItem>
+      <SearchAppBar/>
+      <ImageList variant="masonry" cols={4} gap={10}>
         <TweetImageList/>
-      </ImageList>
+      </ImageList> 
+      <TweetContentDialog open={true}  className={classes.dialog}/>
     </div>
   );
 }

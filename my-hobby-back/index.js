@@ -1,5 +1,5 @@
 const express = require("express");
-const MyTwitter = require("./src/twitter.js")
+const MyTwitter = require("./src/twitter.js");
 require('dotenv').config()
 const client = new MyTwitter(
     process.env.REACT_APP_API_KEY,
@@ -30,21 +30,27 @@ app.use(function (req, res, next) {
     next()
 });
 
-// DBの代わり
-const user = {id: 1, name:"Taro"};
-
 // Getリクエスト
-app.get("/get", (req, res) => {
+app.get("/get", async (req, res, next) => {
     console.log('app.get');
-    // 検索ワードは「シャニマス」
-    res.json(client.search("\u30b7\u30e3\u30cb\u30de\u30b9"));
+
+    try{
+        // 検索ワードは「シャニマス」
+        var abc = await client.search("\u30b7\u30e3\u30cb\u30de\u30b9");
+        res.json(abc);
+    }
+    catch(error){
+        next(error);
+    }
 });
 
 // 検索 (例:ttp://localhost:5001/search?keyword=シャニマス)
 app.get("/search", (req, res) => {
     console.log('app.get');
     var result = client.search(req.query.keyword)
-    res.send(result);
+    // result = PrepareJson.GetTweetsWithImage(result)
+
+    res.send(async () => await result);
 });
 
 // Postリクエスト テスト用コマンド "curl -X POST [url]"
